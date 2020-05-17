@@ -101,3 +101,10 @@ input[type=checkbox]:checked + .task-input {
     color: cornsilk;
     border-radius: 0.8rem;
 }
+
+#counter{
+    text-align: center;
+    font-size: 2rem;
+    color: #fff;
+    font-family: monospace ;
+}
