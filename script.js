@@ -25,6 +25,8 @@ class tasks{
         taskCheck.classList.add('task-check');
         taskCheck.type='checkbox';
 
+        taskCheck.addEventListener('click',countDoneTasks);
+
 
         let taskInput = document.createElement('input');
         taskInput.value = taskName;
@@ -51,11 +53,12 @@ class tasks{
 
 
         //adding events to the button clicks
-        
+
 
         editTaskButton.addEventListener('click',()=> this.editFun(taskInput));
 
         delTaskButton.addEventListener('click',()=>this.deleteFun(taskBox));
+        delTaskButton.addEventListener('click',countDoneTasks);
     }
     editFun(taskInput){
         taskInput.disabled = !taskInput.disabled;
@@ -76,14 +79,30 @@ function addTask(){
 }
 
 taskAdder.addEventListener('click',addTask);
+taskAdder.addEventListener('click',countDoneTasks);
 
 //adding event listener to enter key being pressed when entered something 
 
 window.addEventListener('keydown',function(key){
     if(key.keyCode==13){
         addTask();
+        countDoneTasks();
+
     }
 });
+
+function countDoneTasks(){
+    var noOfCheckBoxes = document.querySelectorAll('input[type="checkbox"]').length;
+
+    var noOfChecked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+
+    var LeftTasks = noOfCheckBoxes - noOfChecked;
+
+    // alert(LeftTasks);
+    document.getElementById('counter').innerHTML="You have " + LeftTasks +" pending tasks";
+}
+
+
 
 
 
